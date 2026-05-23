@@ -1,4 +1,4 @@
-import { INITIAL_FILE_SYSTEM } from "@/data/initial";
+import { INITIAL_FILE_SYSTEM } from "@/data/initial_file";
 import type { FileSystemNode } from "@/types/filesystem";
 
 const STORAGE_KEY = "mini-file-explorer-data";

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { ModalProps } from "@/types/components";
+import { Button } from "@/components/ui/Button";
+import type { ModalProps } from "@/types/ui";
 
 export function Modal({ title, open, onClose, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -23,14 +24,16 @@ export function Modal({ title, open, onClose, children }: ModalProps) {
         <h2 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
           {title}
         </h2>
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="sm"
           onClick={onClose}
-          className="rounded-lg px-2 py-1 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
           aria-label="Close"
+          className="min-w-8"
         >
           ✕
-        </button>
+        </Button>
       </div>
       <div className="p-4">{children}</div>
     </dialog>
