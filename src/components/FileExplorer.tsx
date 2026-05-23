@@ -18,12 +18,7 @@ import {
 } from "@/lib/filesystem";
 import { loadFileSystem, saveFileSystem } from "@/lib/storage";
 import type { CreateNodeType, FileSystemNode } from "@/types/filesystem";
-
-type DialogMode =
-  | { type: "create"; nodeType: CreateNodeType }
-  | { type: "rename"; node: FileSystemNode }
-  | { type: "delete"; node: FileSystemNode }
-  | null;
+import type { DialogMode } from "@/types/components";
 
 export function FileExplorer() {
   const [tree, setTree] = useState<FileSystemNode>(INITIAL_FILE_SYSTEM);
@@ -135,7 +130,7 @@ export function FileExplorer() {
 
   if (!hydrated) {
     return (
-      <div className="flex h-[calc(100vh-3.5rem)] items-center justify-center text-sm text-slate-500">
+      <div className="flex h-[calc(100vh-3.5rem)] items-center justify-center text-sm text-zinc-500 dark:text-zinc-400">
         Loading file system…
       </div>
     );
@@ -206,21 +201,22 @@ export function FileExplorer() {
         )}
         {dialog?.type === "delete" && (
           <div className="flex flex-col gap-4">
-            <p className="text-sm text-slate-600">
-              Delete &ldquo;{dialog.node.name}&rdquo;{dialog.node.type === "folder" ? " and all its contents" : ""}?
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              Delete &ldquo;{dialog.node.name}&rdquo;
+              {dialog.node.type === "folder" ? " and all its contents" : ""}?
             </p>
             <div className="flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setDialog(null)}
-                className="rounded-md px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100"
+                className="rounded-lg px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={confirmDelete}
-                className="rounded-md bg-red-600 px-3 py-1.5 text-sm text-white hover:bg-red-700"
+                className="rounded-lg bg-red-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400"
               >
                 Delete
               </button>

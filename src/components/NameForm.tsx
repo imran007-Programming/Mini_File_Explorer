@@ -1,15 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-
-interface NameFormProps {
-  initialName?: string;
-  label: string;
-  placeholder?: string;
-  submitLabel: string;
-  onSubmit: (name: string) => void;
-  onCancel: () => void;
-}
+import type { NameFormProps } from "@/types/components";
 
 export function NameForm({
   initialName = "",
@@ -35,28 +27,28 @@ export function NameForm({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <label className="flex flex-col gap-1.5 text-sm">
-        <span className="font-medium text-slate-700">{label}</span>
+        <span className="font-medium text-zinc-700 dark:text-zinc-300">{label}</span>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder={placeholder}
           autoFocus
-          className="rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none ring-blue-500 focus:ring-2"
+          className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none ring-violet-500 focus:ring-2 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100"
         />
       </label>
       <div className="flex justify-end gap-2">
         <button
           type="button"
           onClick={onCancel}
-          className="rounded-lg px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-100"
+          className="rounded-lg px-3 py-1.5 text-sm text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={!name.trim()}
-          className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+          className="rounded-lg bg-violet-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-violet-700 disabled:opacity-50 dark:bg-violet-500 dark:hover:bg-violet-400"
         >
           {submitLabel}
         </button>

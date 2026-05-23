@@ -1,16 +1,7 @@
 "use client";
 
 import { TreeNode } from "@/components/TreeNode";
-import type { FileSystemNode } from "@/types/filesystem";
-
-interface SidebarProps {
-  root: FileSystemNode;
-  selectedFolderId: string;
-  expandedIds: Set<string>;
-  onSelectFolder: (id: string) => void;
-  onToggleExpand: (id: string) => void;
-  onOpenFile: (id: string) => void;
-}
+import type { SidebarProps } from "@/types/components";
 
 export function Sidebar({
   root,
@@ -21,10 +12,10 @@ export function Sidebar({
   onOpenFile,
 }: SidebarProps) {
   return (
-    <aside className="flex h-full min-h-0 w-full flex-col border-b border-slate-200 bg-slate-50 md:w-64 md:shrink-0 md:border-b-0 md:border-r">
-      <div className="border-b border-slate-200 px-4 py-3">
-        <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-          Folders
+    <aside className="flex h-full min-h-0 w-full flex-col border-b border-zinc-200 bg-zinc-50/80 dark:border-zinc-800 dark:bg-zinc-900/50 md:w-72 md:shrink-0 md:border-b-0 md:border-r">
+      <div className="border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+          Explorer
         </h2>
       </div>
       <nav className="flex-1 overflow-y-auto p-2" aria-label="Folder tree">

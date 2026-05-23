@@ -1,17 +1,7 @@
 "use client";
 
 import { ChevronIcon, FileIcon, FolderIcon } from "@/components/icons";
-import type { FileSystemNode } from "@/types/filesystem";
-
-interface TreeNodeProps {
-  node: FileSystemNode;
-  depth: number;
-  selectedFolderId: string;
-  expandedIds: Set<string>;
-  onSelectFolder: (id: string) => void;
-  onToggleExpand: (id: string) => void;
-  onOpenFile: (id: string) => void;
-}
+import type { TreeNodeProps } from "@/types/components";
 
 export function TreeNode({
   node,
@@ -27,10 +17,10 @@ export function TreeNode({
       <button
         type="button"
         onClick={() => onOpenFile(node.id)}
-        className="flex w-full items-center gap-1.5 rounded-md py-1 pr-2 text-left text-sm text-slate-600 hover:bg-slate-100"
-        style={{ paddingLeft: `${depth * 12 + 24}px` }}
+        className="flex w-full items-center gap-2 rounded-lg py-1.5 pr-2 text-left text-sm text-zinc-600 transition-colors hover:bg-zinc-200/70 dark:text-zinc-400 dark:hover:bg-zinc-800"
+        style={{ paddingLeft: `${depth * 14 + 28}px` }}
       >
-        <FileIcon className="w-4 h-4 shrink-0 text-slate-400" />
+        <FileIcon className="h-4 w-4 shrink-0 text-sky-500 dark:text-sky-400" />
         <span className="truncate">{node.name}</span>
       </button>
     );
@@ -44,16 +34,19 @@ export function TreeNode({
     <div>
       <div
         className="flex items-center"
-        style={{ paddingLeft: `${depth * 12 + 8}px` }}
+        style={{ paddingLeft: `${depth * 14 + 8}px` }}
       >
         <button
           type="button"
           onClick={() => onToggleExpand(node.id)}
-          className="flex h-6 w-6 shrink-0 items-center justify-center rounded hover:bg-slate-100"
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-zinc-200/70 dark:hover:bg-zinc-800"
           aria-label={isExpanded ? "Collapse folder" : "Expand folder"}
         >
           {hasChildren ? (
-            <ChevronIcon className="w-3.5 h-3.5 text-slate-500" expanded={isExpanded} />
+            <ChevronIcon
+              className="h-3.5 w-3.5 text-zinc-500 dark:text-zinc-400"
+              expanded={isExpanded}
+            />
           ) : (
             <span className="w-3.5" />
           )}
@@ -61,14 +54,18 @@ export function TreeNode({
         <button
           type="button"
           onClick={() => onSelectFolder(node.id)}
-          className={`flex min-w-0 flex-1 items-center gap-1.5 rounded-md py-1 pr-2 text-left text-sm ${
+          className={`flex min-w-0 flex-1 items-center gap-2 rounded-lg py-1.5 pr-2 text-left text-sm transition-colors ${
             isSelected
-              ? "bg-blue-50 font-medium text-blue-700"
-              : "text-slate-700 hover:bg-slate-100"
+              ? "bg-violet-100 font-medium text-violet-800 dark:bg-violet-500/20 dark:text-violet-200"
+              : "text-zinc-700 hover:bg-zinc-200/70 dark:text-zinc-300 dark:hover:bg-zinc-800"
           }`}
         >
           <FolderIcon
-            className={`w-4 h-4 shrink-0 ${isSelected ? "text-blue-500" : "text-amber-500"}`}
+            className={`h-4 w-4 shrink-0 ${
+              isSelected
+                ? "text-violet-600 dark:text-violet-400"
+                : "text-amber-500 dark:text-amber-400"
+            }`}
           />
           <span className="truncate">{node.name}</span>
         </button>
