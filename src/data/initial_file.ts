@@ -39,7 +39,7 @@ export const INITIAL_FILE_SYSTEM: FileSystemNode = {
               id: "file-readme",
               name: "README.txt",
               type: "text-file",
-              content: "Mini File Explorer — a simple hierarchical file manager built with Next.js.",
+              content: "Mini File Explorer a simple hierarchical file manager built with Next.js.",
             },
           ],
         },
